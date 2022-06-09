@@ -11,7 +11,8 @@ function UserListAndPostTitlesApp() {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users`
       );
-      setUsers(await response.json());
+      const users = await response.json();
+      setUsers(users.slice(0,5));
     }
     loadUsers();
   }, []);
@@ -36,7 +37,7 @@ function UserListAndPostTitlesApp() {
     });
   };
 
-  const userList = users.slice(0,5).map((user) => {
+  const userList = users.map((user) => {
     return (
       <li key={user.id}>
         <a href="#" onClick={handleUserClick}>
